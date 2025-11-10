@@ -47,5 +47,11 @@
 	"assets": {
 		"directory": "./dist/client",
 		"not_found_handling": "single-page-application"
-	}
+	},
+	"routes": [
+		{
+			"pattern": "aitime.sunrui.ink",
+			"custom_domain": true
+		}
+	]
 }
