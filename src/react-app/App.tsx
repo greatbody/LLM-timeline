@@ -1,64 +1,35 @@
 // src/App.tsx
 
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import cloudflareLogo from "./assets/Cloudflare_Logo.svg";
-import honoLogo from "./assets/hono.svg";
+import { CountUpTimer } from "./components/CountUpTimer";
 import "./App.css";
 
 function App() {
-	const [count, setCount] = useState(0);
-	const [name, setName] = useState("unknown");
+	// ChatGPT was released on November 30, 2022
+	const chatGptReleaseDate = new Date('2022-11-30');
+	// DeepSeek-R1 was released on January 20, 2025
+	const deepSeekR1ReleaseDate = new Date('2025-01-20');
 
 	return (
 		<>
-			<div>
-				<a href="https://vite.dev" target="_blank">
-					<img src={viteLogo} className="logo" alt="Vite logo" />
-				</a>
-				<a href="https://react.dev" target="_blank">
-					<img src={reactLogo} className="logo react" alt="React logo" />
-				</a>
-				<a href="https://hono.dev/" target="_blank">
-					<img src={honoLogo} className="logo cloudflare" alt="Hono logo" />
-				</a>
-				<a href="https://workers.cloudflare.com/" target="_blank">
-					<img
-						src={cloudflareLogo}
-						className="logo cloudflare"
-						alt="Cloudflare logo"
-					/>
-				</a>
+			<div className="app-header">
+				<h1>⏰ Count-Up Timers</h1>
+				<p>Track time since important milestones</p>
 			</div>
-			<h1>Vite + React + Hono + Cloudflare</h1>
-			<div className="card">
-				<button
-					onClick={() => setCount((count) => count + 1)}
-					aria-label="increment"
-				>
-					count is {count}
-				</button>
-				<p>
-					Edit <code>src/App.tsx</code> and save to test HMR
-				</p>
+
+			<div className="timers-container">
+				<CountUpTimer
+					startDate={chatGptReleaseDate}
+					title="🤖 ChatGPT Era"
+					description="Since OpenAI launched ChatGPT to the world"
+					color="#00d4aa"
+				/>
+				<CountUpTimer
+					startDate={deepSeekR1ReleaseDate}
+					title="🧠 DeepSeek-R1"
+					description="Since DeepSeek released their reasoning model"
+					color="#646cff"
+				/>
 			</div>
-			<div className="card">
-				<button
-					onClick={() => {
-						fetch("/api/")
-							.then((res) => res.json() as Promise<{ name: string }>)
-							.then((data) => setName(data.name));
-					}}
-					aria-label="get name"
-				>
-					Name from API is: {name}
-				</button>
-				<p>
-					Edit <code>worker/index.ts</code> to change the name
-				</p>
-			</div>
-			<p className="read-the-docs">Click on the logos to learn more</p>
 		</>
 	);
 }
